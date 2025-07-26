@@ -4,7 +4,7 @@ import Pricing from "./pages/Pricing";
 import PageNotFound from "./pages/PageNotFound.jsx";
 import AppLayout from "./pages/AppLayout.jsx";
 import Login from "./pages/Login.jsx";
-import Product from "./pages/Pricing";
+import Product from "./pages/Product.jsx";
 
 function App() {
   return (
