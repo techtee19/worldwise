@@ -1,4 +1,5 @@
 import styles from "./CountryItem.module.css";
+import PropTypes from "prop-types";
 
 function CountryItem({ country }) {
   return (
@@ -8,5 +9,10 @@ function CountryItem({ country }) {
     </li>
   );
 }
+
+CountryItem.propTypes = {
+  country: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
 
 export default CountryItem;
