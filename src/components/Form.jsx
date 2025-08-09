@@ -40,12 +40,28 @@ function Form() {
     function () {
       if (!lat || !lng) return;
 
+      // Normalize longitude to be between -180 and 180
+      let normalizedLng = Number(lng);
+      while (normalizedLng > 180) normalizedLng -= 360;
+      while (normalizedLng < -180) normalizedLng += 360;
+
+      // Validate coordinates
+      if (
+        Number(lat) < -90 ||
+        Number(lat) > 90 ||
+        normalizedLng < -180 ||
+        normalizedLng > 180
+      ) {
+        setGeocodingError("Invalid coordinates. Please select a valid location.");
+        return;
+      }
+
       async function fetchCityData() {
         try {
           setIsLoadingGeocoding(true);
           setGeocodingError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+            `${BASE_URL}?latitude=${lat}&longitude=${normalizedLng}`
           );
           const data = await res.json();
           console.log(data);
